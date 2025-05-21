@@ -1,0 +1,44 @@
+*
+{
+    text-decoration: none;
+    list-style-type: none;
+}
+
+body
+{
+    background-color: #f6eed4;
+    margin-inline: 5%;
+    margin-block: 0;
+    padding:0;
+}
+
+header
+{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding-block: 1%;
+}
+
+.navigation
+{
+    display: flex;
+    gap:5em;
+}
+.navigation a::hover
+{
+    cursor: pointer;
+}
+
+.pic_library
+{
+    display: flex;
+    justify-self: center;
+    max-height: 400px;
+    max-width: 1920px;
+}
+.pic_library img
+{
+    object-fit: cover;
+    object-position: center top;
+}
