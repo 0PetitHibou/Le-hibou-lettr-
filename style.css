@@ -2,14 +2,24 @@
 {
     text-decoration: none;
     list-style-type: none;
+    font-family: "Esteban", serif;
+    font-weight: 400;
+    font-style: normal;
+    margin: 0;
 }
 
 body
 {
-    background-color: #f6eed4;
-    margin-inline: 5%;
-    margin-block: 0;
+    background-color: #F5F0E6;
+    margin: 0;
     padding:0;
+}
+
+
+main
+{
+
+    margin-inline: 2.5%;
 }
 
 header
@@ -17,7 +27,15 @@ header
     display: flex;
     justify-content: space-between;
     align-items: center;
-    padding-block: 1%;
+    padding-block: 0.5%;
+    padding-inline: 2.5%;
+    background-color: #EBE2D3;
+}
+
+header a:hover
+{
+    color:#ac5b45;
+    font-weight: 600;
 }
 
 .navigation
@@ -30,15 +48,115 @@ header
     cursor: pointer;
 }
 
-.pic_library
+.picLibrary
 {
     display: flex;
     justify-self: center;
+    background-color: #F5F0E6;
     max-height: 400px;
     max-width: 1920px;
+    padding-block:3em;
 }
-.pic_library img
+.picLibrary img
 {
     object-fit: cover;
     object-position: center top;
+    width: 100vw;
+    max-width: 1920px;
+}
+
+.newReleases
+{
+    display: flex;
+    justify-content: center;
+    background-color: grey;
+    min-width: 50px;
+    min-height: 50px;
+}
+
+
+#contactForm
+{
+    margin-block: 2.5%;
+    display: flex;
+    flex-direction: column;
+    justify-self: center;
+    padding: 2.5%;
+    background-color: #EBE2D3;
+    box-shadow: 0px 5px 15px 1px#ac5b45;
+    border-radius: 20px;
+}
+
+
+.formGroup
+{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+
+}
+.formGroup input
+{
+    width: 400px;
+    border: 1px;
+    border-radius: 10px;
+    min-height: 30px;
+    padding: 5px;
+}
+.formGroup textarea
+{
+    min-height: 80px;
+    width: 400px;
+    border: 1px;
+    border-radius: 10px;
+    padding: 5px;
+}
+
+
+footer
+{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+    color: white;
+    gap: 0.8em;
+    padding-block:0.5% ;
+    background-color: #ac5b45f5;
+}
+
+.logoFooter
+{
+    align-items: center;
+    gap: 0;
+}
+
+.navFooter
+{
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+footer h3
+{
+    text-decoration: underline;
+}
+
+footer div
+{
+    display: flex;
+    gap: 0.5em;
+    text-align: left
+}
+.social
+{
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    gap: 3em;
+}
+
+@media (max-width:1000px)
+{
+    
 }
