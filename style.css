@@ -40,7 +40,7 @@ header
     width:50%;
     border: none;
     border-radius: 10px;
-    align-self: flex-end;
+    align-self: center;
     padding-block: 1%;
     transition: .2s ease;
 }
@@ -56,7 +56,6 @@ header a:hover
     color:#ac5b45;
     font-weight: 600;
 }
-
 .navigation
 {
     display: flex;
@@ -77,7 +76,7 @@ header a:hover
     min-height: 350px;
     width: 100vw;
     padding-block:3em;
-    background-image: url(asset/library.jpg);
+    background-image: url(asset/image/library.jpg);
 }
 
 #searchInput
@@ -114,7 +113,7 @@ header a:hover
     justify-self: center;
     padding: 2% 3.5%;
     background-color: #EBE2D3;
-    box-shadow: 0px 5px 15px 1px#ac5b45;
+    box-shadow: 3px 5px 0px 1px#ac5b45;
     border-radius: 20px;
 }
 .information
@@ -208,6 +207,41 @@ footer div
     flex-direction: row;
     align-items: center;
     gap: 3em;
+}
+
+/* ------------------CATALOG-------------------- */
+
+.catalog
+{
+    display: flex;
+    flex-direction: column;
+    padding:5%;
+}
+.catalogCard
+{
+    display: flex;
+    flex-direction: row;
+    background-color: #EBE2D3;
+    box-shadow: 5px 5px 1px 1px#ac5b45;
+    border-radius: 10px;
+    gap: 3em;
+    margin:1%;
+    padding:1%;
+    transition:all 0.2s ease-in-out;
+}
+.catalogCard:hover{
+    transform:scale(1.005);
+    box-shadow: 8px 8px 1px 1px#ac5b45;
+}
+
+.catalogCard img
+{
+    max-height: 200px;
+}
+
+.placeholderCover
+{
+    background-image: url(asset/image/placeholder_book.jpg);
 }
 
 @media (max-width:1000px)
