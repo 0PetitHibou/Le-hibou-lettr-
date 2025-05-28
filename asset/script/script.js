@@ -37,10 +37,21 @@ function displayBook(books)
 
 }
 
+async function search()
+{
+    
+    const searchInput = document.querySelector("#searchInputCatalog").value.replaceAll(' ', '').toUpperCase().trim();
+    let data = await fetchBook();
+
+    let newData = data.filter(book =>  {
+        return book.title.toUpperCase().includes(searchInput.replaceAll(' ', '').toUpperCase().trim())
+    })
+    displayBook(newData);
+}
+
 async function main()
 {
     let books =await fetchBook();
-    console.log(books);
     displayBook(books);
 }
 
