@@ -18,7 +18,7 @@ body
 
 main
 {
-
+    color: black;
     margin-inline: 2.5%;
 }
 
@@ -30,6 +30,25 @@ header
     padding-block: 0.5%;
     padding-inline: 2.5%;
     background-color: #EBE2D3;
+}
+
+.btn
+{
+    display: flex;
+    background-color: #ac5b45;
+    color: white;
+    width:50%;
+    border: none;
+    border-radius: 10px;
+    align-self: flex-end;
+    padding-block: 1%;
+    transition: .2s ease;
+}
+.btn:hover
+{
+    cursor: pointer;
+    filter: brightness(92%);
+    transform: scaleX(1.05);
 }
 
 header a:hover
@@ -52,17 +71,21 @@ header a:hover
 {
     display: flex;
     justify-self: center;
+    justify-content: center;
+    align-items: center;
     background-color: #F5F0E6;
-    max-height: 400px;
-    max-width: 1920px;
-    padding-block:3em;
-}
-.picLibrary img
-{
-    object-fit: cover;
-    object-position: center top;
+    min-height: 350px;
     width: 100vw;
-    max-width: 1920px;
+    padding-block:3em;
+    background-image: url(asset/library.jpg);
+}
+
+#searchInput
+{
+    padding: 1em;
+    opacity: 0.7;
+    border-radius: 10px;
+    width: 500px;
 }
 
 .newReleases
@@ -75,24 +98,36 @@ header a:hover
 }
 
 
-#contactForm
+/* Partie contact */
+.contact
+{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding-block:3%;
+}
+#contactForm, .information
 {
     margin-block: 2.5%;
     display: flex;
     flex-direction: column;
     justify-self: center;
-    padding: 2.5%;
+    padding: 2% 3.5%;
     background-color: #EBE2D3;
     box-shadow: 0px 5px 15px 1px#ac5b45;
     border-radius: 20px;
 }
-
+.information
+{
+    z-index: -1;
+}
 
 .formGroup
 {
     display: flex;
     flex-direction: column;
     justify-content: center;
+    padding-block: 10px;
 
 }
 .formGroup input
@@ -112,6 +147,21 @@ header a:hover
     padding: 5px;
 }
 
+.information
+{
+    font-size: 1.2em;
+}
+.time p:nth-child(1)
+{
+    text-align: center;
+    font-weight: 600;
+}
+.time p
+{
+    padding-block: 0.3em;
+}
+
+/* Partie footer */
 
 footer
 {
@@ -122,6 +172,10 @@ footer
     gap: 0.8em;
     padding-block:0.5% ;
     background-color: #ac5b45f5;
+}
+footer a
+{
+    color: white;
 }
 
 .logoFooter

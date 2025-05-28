@@ -18,7 +18,7 @@
         <nav>
             <ul class="navigation">
                 <li><a href="">Accueil</a></li>
-                <li><a href="catalog.js">Catalogue</a></li>
+                <li><a href="catalog.html">Catalogue</a></li>
                 <li><a href="">Contact</a></li>
                 <li><a href="">Connexion/inscription</a></li>
                 <li><a href="">Mon compte</a></li>
@@ -28,8 +28,7 @@
 
     <main>
         <div class="picLibrary">
-            <img src="asset/library.jpg" alt="book-shelves">
-            <div id="search"></div>
+            <div><input type="text" id="searchInput" placeholder=" Rechercher un livre..." onkeyup="main()" /></div>
         </div>
         <div class="newReleases">
             <div>LIVRE</div>
@@ -43,51 +42,72 @@
         <div class="borrowed"></div>
 
 
-        <form action="" id="contactForm">
-            <div class="formGroup">
-                <label for="na class="formGroup"me">Prénom</label>
-                <input type="text" id="name" name="name">
-                <div id="nameError" class="errorMessage"></div>
+        <div class="contact">
+            <div>
+                <form action="" id="contactForm">
+                    <div class="formGroup">
+                        <label for="na class="formGroup"me">Prénom</label>
+                        <input type="text" id="name" name="name">
+                        <div id="nameError" class="errorMessage"></div>
+                    </div>
+                    <div class="formGroup">
+                        <label for="email">Email</label>
+                        <input type="email" id="email" name="email">
+                        <div id="emailError" class="errorMessage"></div>
+                    </div>
+                    <div class="formGroup">
+                        <label for="phone">Téléphone</label>
+                        <input type="text" id="phone" name="phone">
+                        <div id="phoneError" class="errorMessage"></div>
+                    </div>
+                    <div class="formGroup">
+                        <label for="message">Message</label>
+                        <textarea name="message" id="message"></textarea>
+                        <div id="messageError" class="errorMessage"></div>
+                    </div>
+                    <input class="btn" type="submit" value="Envoyer">
+                </form>
             </div>
-            <div class="formGroup">
-                <label for="email">Email</label>
-                <input type="email" id="email" name="email">
-                <div id="emailError" class="errorMessage"></div>
+        
+            <div class="information">
+                <div>
+                    <div class="time">
+                        <p>Horaire</p>
+                        <hr>
+                        <p>Lundi : 13H30-18H</p>
+                        <p>Mardi : 13H30-18H</p>
+                        <p>Mercredi : 10H-18H</p>
+                        <p>Jeudi : Accueil de groupe (sur réservation)</p>
+                        <p>Vendredi : 13H30-18H</p>
+                        <p>Samedi : 10H-18H</p>
+
+                    </div>
+                </div>
             </div>
-            <div class="formGroup">
-                <label for="phone">Téléphone</label>
-                <input type="text" id="phone" name="phone">
-                <div id="phoneError" class="errorMessage"></div>
-            </div>
-            <div class="formGroup">
-                <label for="message">Message</label>
-                <textarea name="message" id="message"></textarea>
-                <div id="messageError" class="errorMessage"></div>
-            </div>
-        </form>
+        </div>
     </main>
 
 <footer>
     <div class="logoFooter">
-        <img src="asset/hiblanc.svg" alt="Logo" width="100px">
+        <img src="asset/image/hiblanc.svg" alt="Logo" width="100px">
         <h2>Le hibou Lettré</h2>
     </div>
     <div class="navFooter">
         <h3>Navigation</h3>
         <div>
-            <a>Accueil</a>
+            <a href="index.html">Accueil</a>
             <p>|</p>
-            <a>Catalogue</a>
+            <a href="catalog.html">Catalogue</a>
             <p>|</p>
-            <a>Contact</a>
+            <a href="#contactForm">Contact</a>
             <p>|</p>
             <a>Mon compte</a>
         </div>
     </div>
     <div class="social">
-        <img src="asset/linkedin-svgrepo-com.svg" alt="Linkedin" width="50px">
-        <img src="asset/github-svgrepo-com.svg" alt="GitHub" width="50px">
-        <img src="asset/vercel-fill-svgrepo-com.svg" alt="Vercel" width="50px">
+        <img src="asset/image/linkedin-svgrepo-com.svg" alt="Linkedin" width="50px">
+        <img src="asset/image/github-svgrepo-com.svg" alt="GitHub" width="50px">
+        <img src="asset/image/vercel-fill-svgrepo-com.svg" alt="Vercel" width="50px">
     </div>
 
 </footer>
