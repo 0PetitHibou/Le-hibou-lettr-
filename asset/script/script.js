@@ -9,6 +9,39 @@ async function fetchBook()
 }
 
 
+document.addEventListener("DOMContentLoaded", function () {
+    const form = document.querySelector("#contactForm");
+    form.addEventListener("submit", sendForm);
+});
+
+function sendForm(e)
+{
+    e.preventDefault();
+
+    const name = document.querySelector("#name").value.trim();
+    const email = document.querySelector("#email").value.trim();
+    const message = document.querySelector("#message").value.trim();
+    const sent = document.querySelector("#messageSent");
+
+    if (!name || !email || !message)
+    {
+        sent.textContent = "Veuillez remplir tous les champs obligatoires.";
+        sent.style.display = "block";
+        sent.style.color = "red";
+        return;
+    }
+
+    sent.textContent = "Votre message à bien été envoyé !";
+    sent.style.display = "block";
+    sent.style.color = "green";
+
+
+
+    console.log(sent);
+    document.querySelector("#contactForm").reset();
+}
+
+
 function displayBook(books)
 {
     const display = document.querySelector(".catalog");
@@ -57,3 +90,4 @@ async function main()
 
 
 main();
+sendForm();
