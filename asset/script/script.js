@@ -1,18 +1,12 @@
-async function fetchBook() 
+async function fetchBook(page=1) 
 {
     const API_URL = "https://openlibrary.org/search.json"
     const search = 'publish_year:[2020]';
-    const response = await fetch(`${API_URL}?q=${search}&limit=20`);
+    const response = await fetch(`${API_URL}?q=${search}&page=${page}`);
     const data = await response.json();
     const books = data.docs;
     return books;
 }
-
-
-document.addEventListener("DOMContentLoaded", function () {
-    const form = document.querySelector("#contactForm");
-    form.addEventListener("submit", sendForm);
-});
 
 function sendForm(e)
 {
@@ -45,28 +39,30 @@ function sendForm(e)
 function displayBook(books)
 {
     const display = document.querySelector(".catalog");
-    books.forEach(book => {
+    if (display){
+        display.innerHTML="";
 
-
-        const article = document.createElement("article");
-        article.classList.add("catalogCard");
-
-        // Book cover
-
-        const cover_i = book.cover_i;
-        const image = document.createElement("img"); 
-        image.src = `https://covers.openlibrary.org/b/id/${cover_i}-L.jpg`;
-
-        image.src = cover_i ? image.src = `https://covers.openlibrary.org/b/id/${cover_i}-L.jpg` : "/asset/image/placeholder_book.jpg";
+        books.forEach(book => {
+            const article = document.createElement("article");
+            article.classList.add("catalogCard");
     
-        //Informations
-        const info = document.createElement("div");
-        info.classList.add("bookInfos");
-        info.innerHTML =`<h2>${book.title}<hr></h2><em>Auteur :</em><br>-${book.author_name[0]} <br> Année de parution : ${book.first_publish_year}`;
+            // Book cover
+    
+            const cover_i = book.cover_i;
+            const image = document.createElement("img"); 
+            image.src = `https://covers.openlibrary.org/b/id/${cover_i}-L.jpg`;
+    
+            image.src = cover_i ? image.src = `https://covers.openlibrary.org/b/id/${cover_i}-L.jpg` : "/asset/image/placeholder_book.jpg";
         
-        article.append(image, info);
-        display.appendChild(article);
-    });
+            //Informations
+            const info = document.createElement("div");
+            info.classList.add("bookInfos");
+            info.innerHTML =`<h2>${book.title}<hr></h2><em>Auteur :</em><br>-${book.author_name[0]} <br> Année de parution : ${book.first_publish_year}`;
+            
+            article.append(image, info);
+            display.appendChild(article);
+        });
+    }
 
 }
 
@@ -76,18 +72,23 @@ async function search()
     const searchInput = document.querySelector("#searchInputCatalog").value.replaceAll(' ', '').toUpperCase().trim();
     let data = await fetchBook();
 
-    let newData = data.filter(book =>  {
-        return book.title.toUpperCase().includes(searchInput.replaceAll(' ', '').toUpperCase().trim())
+    let newData = data.filter((book) =>  {
+        let result = book.title.toUpperCase().includes(searchInput.replaceAll(' ', '').toUpperCase().trim());
+        return(result);
     })
     displayBook(newData);
 }
 
 async function main()
 {
-    let books =await fetchBook();
+    let books =await fetchBook(2);
     displayBook(books);
+
+    let formButton = document.querySelector("#formSubmit");
+
+    if (formButton) formButton.addEventListener("click", sendForm);
+    
 }
 
 
 main();
-sendForm();

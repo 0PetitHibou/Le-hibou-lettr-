@@ -108,7 +108,7 @@ nav img
     margin-top: 2%;
     opacity: 0.7;
     border-radius: 10px;
-    width: 70px;
+    width: 50%;
     font-size: 1.5em;
     font-weight: 600;
 }
@@ -124,6 +124,11 @@ nav img
 
 
 /* Partie contact */
+.flexContact
+{
+    display: flex;
+    justify-content: center;
+}
 .contact
 {
     display: flex;
@@ -187,6 +192,11 @@ nav img
     padding-block: 0.3em;
 }
 
+.location p:nth-child(1)
+{
+    text-align: center;
+    font-weight: 600;
+}
 /* Partie footer */
 
 footer
@@ -202,6 +212,7 @@ footer
 footer a
 {
     color: white;
+    white-space: nowrap;
 }
 
 .logoFooter
@@ -280,5 +291,30 @@ footer div
     nav img
     {
         display: block;
+    }
+    .social img
+    {
+        width: 40px;
+    }
+}
+
+@media screen and (max-width:750px)
+{
+    nav img
+    {
+        width: 40px;
+    }
+    .flexContact, footer, .navFooter
+    {
+        flex-direction: column;
+        padding: 3%;
+    }
+    .logoFooter
+    {
+        flex-direction: column;
+    }
+    .social
+    {
+        display: none;
     }
 }
