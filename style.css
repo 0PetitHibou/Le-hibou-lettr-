@@ -42,14 +42,16 @@ header
 .btn
 {
     display: flex;
+    justify-content: center;
     background-color: #ac5b45;
     color: white;
     width:50%;
     border: none;
-    border-radius: 10px;
+    border-radius: 5px;
     align-self: center;
     padding-block: 1%;
-    transition: .2s ease;
+    margin-block: 2.5%;
+    transition: .1s ease;
 }
 .btn:hover
 {
@@ -96,7 +98,7 @@ nav img
 {
     padding: 0.2em 0.5em;
     opacity: 0.7;
-    border-radius: 10px;
+    border-radius: 5px;
     font-size: 1.5em;
     font-weight: 600;
 }
@@ -107,7 +109,7 @@ nav img
     padding: 0.2em 0.5em;
     margin-top: 2%;
     opacity: 0.7;
-    border-radius: 10px;
+    border-radius: 5px;
     width: 50%;
     font-size: 1.5em;
     font-weight: 600;
@@ -145,7 +147,7 @@ nav img
     padding: 2% 3.5%;
     background-color: #EBE2D3;
     box-shadow: 3px 5px 0px 1px#ac5b45;
-    border-radius: 20px;
+    border-radius: 5px;
 }
 .information
 {
@@ -163,7 +165,7 @@ nav img
 .formGroup input
 {
     width: 400px;
-    border-radius: 10px;
+    border-radius: 5px;
     min-height: 30px;
     padding: 5px;
     border:none;
@@ -174,7 +176,7 @@ nav img
     min-height: 80px;
     width: 400px;
     border: 1px;
-    border-radius: 10px;
+    border-radius: 5px;
     padding: 5px;
 }
 
@@ -261,7 +263,7 @@ footer div
     flex-direction: row;
     background-color: #EBE2D3;
     box-shadow: 5px 5px 1px 1px#ac5b45;
-    border-radius: 10px;
+    border-radius: 5px;
     gap: 3em;
     margin:1%;
     padding:1%;
@@ -280,6 +282,42 @@ footer div
 .placeholderCover
 {
     background-image: url(asset/image/placeholder_book.jpg);
+}
+
+
+/* ---------------------------------login_signup---------------------------------------- */
+
+.logForm
+{
+    display: flex;
+    flex-direction: column;
+    background-color: #EBE2D3;
+    justify-self: center;
+    margin-block: 2.5%;
+    padding: 2%;
+    box-shadow: 3px 5px 0px 1px #ac5b45;
+}
+
+.logForm form
+{
+    justify-items: center;
+}
+
+.line
+{
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    padding-block: 5%;
+}
+
+.line:before, .line:after
+{
+    content:" ";
+    flex: 1;
+    height: 1px;
+    width: 200px;
+    background-color: #ac5b45;
 }
 
 @media screen and (max-width:1400px)

@@ -68,16 +68,15 @@ function displayBook(books)
 
 async function search()
 {
-    
-    const searchInput = document.querySelector("#searchInputCatalog").value.replaceAll(' ', '').toUpperCase().trim();
-    let data = await fetchBook();
+        const searchInput = document.querySelector("#searchInputCatalog").value.replaceAll(' ', '').toUpperCase().trim();
+        let data = await fetchBook();
 
-    let newData = data.filter((book) =>  {
-        let result = book.title.toUpperCase().includes(searchInput.replaceAll(' ', '').toUpperCase().trim());
-        return(result);
-    })
-    displayBook(newData);
-}
+        let newData = data.filter((book) =>  {
+            let result = book.title.toUpperCase().includes(searchInput.replaceAll(' ', '').toUpperCase().trim());
+            return(result);
+        })
+        displayBook(newData);
+} 
 
 async function main()
 {
