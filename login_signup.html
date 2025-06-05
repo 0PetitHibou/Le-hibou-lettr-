@@ -17,7 +17,6 @@
             <ul class="navigation">
                 <li><a href="index.html">Accueil</a></li>
                 <li><a href="catalog.html">Catalogue</a></li>
-                <li><a href="">Contact</a></li>
                 <li><a href="login_signup.html">Connexion/inscription</a></li>
                 <li><a href="">Mon compte</a></li>
             </ul>
@@ -64,11 +63,16 @@
             </div>
             
             <div class="formGroup">
-                <label for="signupEmail">Adresse mail</label>
-                <input type="email" id="signupEmail" name="email" required>
+                <label for="signupEmail">Email</label>
+                <input type="email" id="signUpEmail" name="email" required>
+            </div>
+
+            <div class="formGroup">
+                <label for="signupPassword">Mot de passe</label>
+                <input type="password" id="signUpPassword" name="password" required>
             </div>
             
-            <button type="submit" class="btn">S'inscrire</button>
+            <input type="submit" class="btn" id="signUpForm" value="S'inscrire">
         </form>
 
     </main>
@@ -97,8 +101,9 @@
         <img src="asset/image/github-142-svgrepo-com.svg" alt="GitHub" width="50px">
         <img src="asset/image/vercel-icon-svgrepo-com.svg" alt="Vercel" width="50px">
     </div>
-
-</footer>
+    
+    </footer>
+    <script src="asset/script/script.js"></script>
 </body>
 
 

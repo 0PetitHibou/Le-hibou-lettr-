@@ -36,6 +36,51 @@ function sendForm(e)
 }
 
 
+document.querySelector("#signupForm").addEventListener("submit", async function() 
+{
+
+    const fName = document.querySelector("#firstName").value.trim()
+    const lName = document.querySelector("#lastName").value.trim()
+    const bDate = document.querySelector("#birthDate").value.trim()
+    const mail = document.querySelector("#signUpEmail").value.trim()
+    const password = document.querySelector("#signUpPassword").value.trim()
+
+    const body = JSON.stringify({
+                first_name:fName,
+                last_name:lName,
+                birth_date:bDate,
+                mail:mail,
+                password:password
+            })
+            console.log(body);
+
+    try {
+        const response = await fetch("http://localhost:3000/users", {
+            method:"POST",
+            headers: {
+                "Content-Type" : "application/json"
+            },
+            body: body
+            
+        });
+
+        if (response.ok) {
+            const data = await response.json();
+            console.log("inscription réussie",data);
+            alert("Inscription réussie !");
+        } else {
+            const error = await response.json();
+            console.log("inscription echouée",error);
+            alert("Erreur lors de l'inscription");
+        }
+    window.location.href = "/index.html";
+    } catch (error) {
+        console.log(error);
+    }}
+)
+
+
+
 function displayBook(books)
 {
     const display = document.querySelector(".catalog");
@@ -84,8 +129,9 @@ async function main()
     displayBook(books);
 
     let formButton = document.querySelector("#formSubmit");
-
     if (formButton) formButton.addEventListener("click", sendForm);
+
+
     
 }
 
