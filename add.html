@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="style.css">
+    <title>Accueil</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Esteban&display=swap" rel="stylesheet">
+</head>
+
+<body>
+        <header>
+        <div style="font-size: 40px;">Le hibou Lettré</div>
+        <nav>
+            <ul class="navigation">
+                <li><a href="">Accueil</a></li>
+                <li><a href="catalog.html">Catalogue</a></li>
+                <li><a href="login_signup.html">Connexion/inscription</a></li>
+                <li><a href="">Mon compte</a></li>
+                <li><a href="add.html">Ajouter</a></li>
+            </ul>
+            <img src="asset/image/menu.svg" alt="menuBurger" width="60px">
+        </nav>
+    </header>
+
+
+    <main>
+        <br>
+        <form id="addBook">
+            <label for="cover">
+                <input type="file" id="cover" name="cover" placeholder="couverture" required>
+            </label>
+            <label for="title">
+                <input type="text" id="title" name="title" placeholder="Titre" required>
+            </label>
+            <label for="author">
+                <input type="text" id="author" name="author" placeholder="Auteur" required>
+            </label>
+            <label for="publish_year">
+                <input type="number" id="year" name="year" placeholder="Année de parution" required>
+            </label>
+            <input type="button" value="Ajouter">
+        </form>
+        <br>
+    </main>
+
+    <footer>
+    <div class="logoFooter">
+        <img src="asset/image/hiblanc.svg" alt="Logo" width="100px">
+        <h2>Le hibou Lettré</h2>
+    </div>
+    <div class="navFooter">
+        <h3>Navigation</h3>
+        <div>
+            <a href="index.html">Accueil</a>
+            <p>|</p>
+            <a href="catalog.html">Catalogue</a>
+            <p>|</p>
+            <a href="#contactForm">Contact</a>
+            <p>|</p>
+            <a href="login_signup.html">Mon compte</a>
+        </div>
+    </div>
+    <div class="social">
+        <img src="asset/image/linkedin-svgrepo-com (1).svg" alt="Linkedin" width="50px">
+        <img src="asset/image/github-svgrepo-com.svg" alt="GitHub" width="50px">
+        <img src="asset/image/vercel-icon-svgrepo-com.svg" alt="Vercel" width="50px">
+    </div>
+
+    </footer>
+    <script src="asset/script/add_data.js"></script>
+</body>
+
+</html>
