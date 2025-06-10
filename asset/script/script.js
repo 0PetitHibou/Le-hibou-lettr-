@@ -148,7 +148,7 @@ document.querySelector("#loginForm").addEventListener("submit", async function (
             headers: {
             "Content-Type": "application/json"
             },
-            credentials: "include", // 🔐 important pour envoyer les cookies de session
+            credentials: "include",
             body: JSON.stringify({ mail, password })
         });
 
@@ -156,7 +156,7 @@ document.querySelector("#loginForm").addEventListener("submit", async function (
 
     if (response.ok) {
         alert("Connexion réussie !");
-        window.location.href = "/page-protégée.html"; // 🔁 redirige vers une autre page si besoin
+        window.location.href = "/index.html";
     } else {
         alert(result.error || result.message || "Échec de la connexion");
     }
@@ -172,4 +172,4 @@ document.querySelector("#loginForm").addEventListener("submit", async function (
 
 
 main();
-login();
+// login();
