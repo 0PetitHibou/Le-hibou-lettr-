@@ -36,49 +36,78 @@ function sendForm(e)
 }
 
 
-document.querySelector("#signupForm").addEventListener("submit", async function() 
-{
+async function Signup(e) {
+    e.preventDefault();
 
-    const fName = document.querySelector("#firstName").value.trim()
-    const lName = document.querySelector("#lastName").value.trim()
-    const bDate = document.querySelector("#birthDate").value.trim()
-    const mail = document.querySelector("#signUpEmail").value.trim()
-    const password = document.querySelector("#signUpPassword").value.trim()
+    const fName = document.querySelector("#firstName").value.trim();
+    const lName = document.querySelector("#lastName").value.trim();
+    const bDate = document.querySelector("#birthDate").value.trim();
+    const mail = document.querySelector("#signUpEmail").value.trim();
+    const password = document.querySelector("#signUpPassword").value.trim();
 
     const body = JSON.stringify({
-                first_name:fName,
-                last_name:lName,
-                birth_date:bDate,
-                mail:mail,
-                password:password
-            })
-            console.log(body);
+        first_name: fName,
+        last_name: lName,
+        birth_date: bDate,
+        mail: mail,
+        password: password
+    });
+
+    console.log(body);
 
     try {
         const response = await fetch("http://localhost:3000/users", {
-            method:"POST",
+            method: "POST",
             headers: {
-                "Content-Type" : "application/json"
+                "Content-Type": "application/json"
             },
             body: body
-            
         });
 
         if (response.ok) {
             const data = await response.json();
-            console.log("inscription réussie",data);
+            console.log("Inscription réussie", data);
             alert("Inscription réussie !");
+            window.location.href = "/index.html";
         } else {
             const error = await response.json();
-            console.log("inscription echouée",error);
+            console.log("Inscription échouée", error);
             alert("Erreur lors de l'inscription");
         }
-    window.location.href = "/index.html";
+
     } catch (error) {
         console.log(error);
-    }}
-)
+    }
+}
 
+
+async function checkSession() {
+            let connectedSection = document.querySelector(".account");
+            let notConnectedSection = document.querySelector(".login");
+    try{
+        
+        const res = await fetch("http://localhost:3000/login", {
+            credentials: "include"
+        });
+        const data = await res.json();
+
+        console.log(data)   
+
+        if (data.isLogged) {        
+            connectedSection.style.display = "block";
+            notConnectedSection.style.display = "none";
+            console.log("connecté");     
+        } else {
+            connectedSection.style.display = "none";
+            notConnectedSection.style.display = "block";
+            console.log("non connecté");
+        }
+
+    } catch (error) {
+        console.log(error);
+    }
+    
+}
 
 
 function displayBook(books)
@@ -130,13 +159,11 @@ async function main()
 
     let formButton = document.querySelector("#formSubmit");
     if (formButton) formButton.addEventListener("click", sendForm);
-
-
-    
+  
 }
 
 
-document.querySelector("#loginForm").addEventListener("submit", async function (e) {
+async function Login(e) {
     e.preventDefault();
 
     const mail = document.querySelector("#loginEmail").value.trim();
@@ -146,30 +173,37 @@ document.querySelector("#loginForm").addEventListener("submit", async function (
         const response = await fetch("http://localhost:3000/login", {
             method: "POST",
             headers: {
-            "Content-Type": "application/json"
+                "Content-Type": "application/json"
             },
-            credentials: "include",
+            credentials: "include", // Important pour envoyer/recevoir les cookies
             body: JSON.stringify({ mail, password })
         });
 
-    const result = await response.json();
+        const result = await response.json();
 
-    if (response.ok) {
-        alert("Connexion réussie !");
-        window.location.href = "/index.html";
-    } else {
-        alert(result.error || result.message || "Échec de la connexion");
-    }
+        if (response.ok) {
+            alert("Connexion réussie !");
+            window.location.href = "/index.html";
+        } else {
+            alert(result.error || result.message || "Échec de la connexion");
+        }
 
     } catch (error) {
         console.error("Erreur lors de la connexion :", error);
         alert("Erreur serveur");
     }
-});
+}
 
     
 
 
 
 main();
-// login();
+
+window.addEventListener("DOMContentLoaded", () => {
+    checkSession();
+
+    document.querySelector("#signupForm")?.addEventListener("submit", Signup);
+    document.querySelector("#loginForm")?.addEventListener("submit", Login);
+
+});
