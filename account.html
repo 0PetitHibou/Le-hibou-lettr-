@@ -3,12 +3,13 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Catalogue</title>
+    <link rel="stylesheet" href="style.css">
+    <title>Accueil</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Esteban&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="style.css">
 </head>
+
 <body>
     <header>
         <div style="font-size: 40px;">Le hibou Lettré</div>
@@ -25,13 +26,16 @@
         </nav>
     </header>
 
-<main>
-    <div><input type="text" id="searchInputCatalog" placeholder=" Rechercher un livre..." onkeyup="search()" /></div>
-    <div class="catalog"></div>
-    
-</main>
 
-<footer>
+    <main>
+        <div class="container">
+            <div id="account">
+                <h2>Mon compte</h2>
+            </div>
+        </div>
+    </main>
+
+    <footer>
     <div class="logoFooter">
         <img src="asset/image/hiblanc.svg" alt="Logo" width="100px">
         <h2>Le hibou Lettré</h2>
@@ -54,8 +58,8 @@
         <img src="asset/image/vercel-icon-svgrepo-com.svg" alt="Vercel" width="50px">
     </div>
 
-</footer>
-
-<script src="asset/script/script.js" type="module"></script>
+    </footer>
+    <script src="asset/script/script.js" type="module"></script>
 </body>
+
 </html>

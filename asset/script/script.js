@@ -1,4 +1,5 @@
 import  { logIn, logOut } from "./log.js";
+// import adddata
 
 async function fetchBook(page=1) 
 {
@@ -135,20 +136,56 @@ async function main()
 
     let formButton = document.querySelector("#formSubmit");
     if (formButton) formButton.addEventListener("click", sendForm);
+
   
 }
 
 function session(){
     const logOut = document.querySelector(".logOut");
     const logIn = document.querySelector(".login");
+    const account = document.querySelector(".account");
     if (localStorage.getItem("token")){
         if (logIn) logIn.style.display = "none";
         if (logOut) logOut.style.display = "block";
+        if (account) account.style.display = "block";
     } else {    
         if (logIn) logIn.style.display = "block";
         if (logOut) logOut.style.display = "none";
+        if (account) account.style.display = "none";
     }
 }
+
+async function getAccountData() {
+    const token = localStorage.getItem("token");
+    if (!token) return;
+
+    try {
+        const response = await fetch("http://localhost:3000/account", {
+            method: "GET",
+            headers: {
+                Authorization: token,
+            },
+        });
+
+        if (!response.ok) throw new Error("Erreur de récupération du compte");
+
+        const data = await response.json();
+        console.log("Utilisateur connecté :", data.account);
+
+        // Affiche dans le DOM par exemple
+        const account = document.querySelector("#account");
+        if (account) {
+            account.innerHTML = `
+                <p>Connecté en tant que <strong>${data.account.mail}</strong></p>
+                <p>ID: ${data.account.id}</p>
+            `;
+        }
+
+    } catch (error) {
+        console.error("Erreur lors de la récupération du compte :", error);
+    }
+}
+
 
 main();
 
@@ -160,4 +197,5 @@ window.addEventListener("DOMContentLoaded", () => {
     document.querySelector(".logOut")?.addEventListener("click", logOut);
     document.querySelector("#searchInputCatalog")?.addEventListener("input", search);
     session();
+    getAccountData();
 });
