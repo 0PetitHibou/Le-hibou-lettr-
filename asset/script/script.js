@@ -1,3 +1,5 @@
+import  { logIn, logOut } from "./log.js";
+
 async function fetchBook(page=1) 
 {
     const API_URL = "https://openlibrary.org/search.json"
@@ -81,33 +83,6 @@ async function Signup(e) {
 }
 
 
-async function checkSession() {
-            let connectedSection = document.querySelector(".account");
-            let notConnectedSection = document.querySelector(".login");
-    try{
-        
-        const res = await fetch("http://localhost:3000/login", {
-            credentials: "include"
-        });
-        const data = await res.json();
-
-        console.log(data)   
-
-        if (data.isLogged) {        
-            connectedSection.style.display = "block";
-            notConnectedSection.style.display = "none";
-            console.log("connecté");     
-        } else {
-            connectedSection.style.display = "none";
-            notConnectedSection.style.display = "block";
-            console.log("non connecté");
-        }
-
-    } catch (error) {
-        console.log(error);
-    }
-    
-}
 
 
 function displayBook(books)
@@ -152,6 +127,7 @@ async function search()
         displayBook(newData);
 } 
 
+
 async function main()
 {
     let books =await fetchBook(2);
@@ -162,48 +138,26 @@ async function main()
   
 }
 
-
-async function Login(e) {
-    e.preventDefault();
-
-    const mail = document.querySelector("#loginEmail").value.trim();
-    const password = document.querySelector("#loginPassword").value.trim();
-
-    try {
-        const response = await fetch("http://localhost:3000/login", {
-            method: "POST",
-            headers: {
-                "Content-Type": "application/json"
-            },
-            credentials: "include", // Important pour envoyer/recevoir les cookies
-            body: JSON.stringify({ mail, password })
-        });
-
-        const result = await response.json();
-
-        if (response.ok) {
-            alert("Connexion réussie !");
-            window.location.href = "/index.html";
-        } else {
-            alert(result.error || result.message || "Échec de la connexion");
-        }
-
-    } catch (error) {
-        console.error("Erreur lors de la connexion :", error);
-        alert("Erreur serveur");
+function session(){
+    const logOut = document.querySelector(".logOut");
+    const logIn = document.querySelector(".login");
+    if (localStorage.getItem("token")){
+        if (logIn) logIn.style.display = "none";
+        if (logOut) logOut.style.display = "block";
+    } else {    
+        if (logIn) logIn.style.display = "block";
+        if (logOut) logOut.style.display = "none";
     }
 }
 
-    
-
-
-
 main();
 
+
 window.addEventListener("DOMContentLoaded", () => {
-    checkSession();
 
     document.querySelector("#signupForm")?.addEventListener("submit", Signup);
-    document.querySelector("#loginForm")?.addEventListener("submit", Login);
-
+    document.querySelector("#loginForm")?.addEventListener("submit", logIn);
+    document.querySelector(".logOut")?.addEventListener("click", logOut);
+    document.querySelector("#searchInputCatalog")?.addEventListener("input", search);
+    session();
 });

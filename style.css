@@ -29,6 +29,10 @@ main input:focus,main textarea:focus
     outline: none;  
 }
 
+input, main textarea{
+    border: solid transparent 2px;
+}
+
 header
 {
     display: flex;
@@ -37,6 +41,11 @@ header
     padding-block: 0.5%;
     padding-inline: 2.5%;
     background-color: #EBE2D3;
+}
+
+.logOut
+{
+    display: none;
 }
 
 .btn
@@ -168,7 +177,6 @@ nav img
     border-radius: 5px;
     min-height: 30px;
     padding: 5px;
-    border:none;
 }
 
 .formGroup textarea

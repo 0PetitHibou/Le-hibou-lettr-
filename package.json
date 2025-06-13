@@ -1,0 +1,20 @@
+{
+  "name": "settings",
+  "version": "1.0.0",
+  "description": "Dépôt de ma page pour le test final.",
+  "homepage": "https://github.com/0PetitHibou/Le-hibou-lettr-#readme",
+  "bugs": {
+    "url": "https://github.com/0PetitHibou/Le-hibou-lettr-/issues"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/0PetitHibou/Le-hibou-lettr-.git"
+  },
+  "license": "ISC",
+  "author": "Mickaël",
+  "type": "module",
+  "main": "asset/script/script.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  }
+}
