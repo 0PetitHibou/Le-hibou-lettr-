@@ -1,5 +1,15 @@
 import  { logIn, logOut } from "./log.js";
+import { addBook } from "./add_data.js";
+
 // import adddata
+
+function burger() {
+    const burger = document.querySelector(".burger");
+    const navLinks = document.querySelector(".nav-links");
+    burger.addEventListener("click", () => {
+        navLinks.classList.toggle("active");
+    });
+}
 
 async function fetchBook(page=1) 
 {
@@ -8,6 +18,20 @@ async function fetchBook(page=1)
     const response = await fetch(`${API_URL}?q=${search}&page=${page}`);
     const data = await response.json();
     const books = data.docs;
+    return books;
+}
+
+async function fetchBookDb() {
+   const API_URL = "http://localhost:3000/books";
+    const response = await fetch(`${API_URL}`);
+    const data = await response.json();
+    const books = data.map((book) => ({ 
+        id: book.id,
+        cover: book.cover,
+        title: book.title,
+        author_name: [book.author],
+        first_publish_year: book.publish_year
+    }));
     return books;
 }
 
@@ -56,25 +80,20 @@ async function Signup(e) {
         password: password
     });
 
-    console.log(body);
 
     try {
-        const response = await fetch("http://localhost:3000/users", {
+        const response = await fetch("http://localhost:3000/users", { //envoie vers api
             method: "POST",
             headers: {
                 "Content-Type": "application/json"
             },
-            body: body
+            body: body //?
         });
-
+        
         if (response.ok) {
-            const data = await response.json();
-            console.log("Inscription réussie", data);
             alert("Inscription réussie !");
             window.location.href = "/index.html";
         } else {
-            const error = await response.json();
-            console.log("Inscription échouée", error);
             alert("Erreur lors de l'inscription");
         }
 
@@ -86,9 +105,21 @@ async function Signup(e) {
 
 
 
-function displayBook(books)
+
+
+//  displayBook(DbBooks)
+// {
+//     "id": 6,
+//     "cover": "https://covers.openlibrary.org/b/id/14758867-L.jpg",
+//     "title": "Rodchenkov Affair",
+//     "author": "Grigory Rodchenkov",
+//     "publish_year": 2020
+// }
+
+function displayBook(books, id)
 {
-    const display = document.querySelector(".catalog");
+    const display = document.querySelector(id);
+
     if (display){
         display.innerHTML="";
 
@@ -96,46 +127,66 @@ function displayBook(books)
             const article = document.createElement("article");
             article.classList.add("catalogCard");
     
-            // Book cover
-    
+            // Couverture de livre
             const cover_i = book.cover_i;
             const image = document.createElement("img"); 
             image.src = `https://covers.openlibrary.org/b/id/${cover_i}-L.jpg`;
     
             image.src = cover_i ? image.src = `https://covers.openlibrary.org/b/id/${cover_i}-L.jpg` : "/asset/image/placeholder_book.jpg";
-        
             //Informations
             const info = document.createElement("div");
             info.classList.add("bookInfos");
-            info.innerHTML =`<h2>${book.title}<hr></h2><em>Auteur :</em><br>-${book.author_name[0]} <br> Année de parution : ${book.first_publish_year}`;
+            info.innerHTML =`<h2>${book.title}<hr></h2><em>Auteur :</em><br>-${book.author_name[0]} <br> Année de parution : ${book.first_publish_year} `;
+            
+            const btn = document.createElement("button");
+            btn.textContent = "Ajouter";
+            btn.classList.add("addBtn");
+            btn.addEventListener("click", () =>{addBook(book)});
             
             article.append(image, info);
+            if (id != "#booklist") {
+                article.append(btn);
+            }
             display.appendChild(article);
+
         });
     }
-
 }
 
-async function search()
-{
-        const searchInput = document.querySelector("#searchInputCatalog").value.replaceAll(' ', '').toUpperCase().trim();
-        let data = await fetchBook();
 
-        let newData = data.filter((book) =>  {
-            let result = book.title.toUpperCase().includes(searchInput.replaceAll(' ', '').toUpperCase().trim());
-            return(result);
-        })
-        displayBook(newData);
-} 
+async function search(id, fromDb = false)
+{
+
+        const searchInput = document.querySelector(id).value.replaceAll(' ', '').toUpperCase().trim();
+        if (!fromDb) {
+            let data = await fetchBook();
+            let newData = data.filter((book) =>  {
+                let result = book.title.toUpperCase().includes(searchInput.replaceAll(' ', '').toUpperCase().trim());
+                return(result);
+            })
+            displayBook(newData, "#catalog");
+        } else {
+            let data = await fetchBookDb();
+            let newData = data.filter((book) =>  {
+                let result = book.title.toUpperCase().includes(searchInput.replaceAll(' ', '').toUpperCase().trim());
+                return(result);
+            })
+            displayBook(newData, "#booklist");
+        }
+
+    } 
 
 
 async function main()
 {
     let books =await fetchBook(2);
-    displayBook(books);
+    displayBook(books, "#catalog");
+    let dbBooks = await fetchBookDb();
+    displayBook(dbBooks, "#booklist");
 
     let formButton = document.querySelector("#formSubmit");
     if (formButton) formButton.addEventListener("click", sendForm);
+
 
   
 }
@@ -195,7 +246,11 @@ window.addEventListener("DOMContentLoaded", () => {
     document.querySelector("#signupForm")?.addEventListener("submit", Signup);
     document.querySelector("#loginForm")?.addEventListener("submit", logIn);
     document.querySelector(".logOut")?.addEventListener("click", logOut);
-    document.querySelector("#searchInputCatalog")?.addEventListener("input", search);
+    document.querySelector("#searchInputCatalog")?.addEventListener("input", () =>search("#searchInputCatalog"));
+    document.querySelector("#displayBooks")?.addEventListener("input", () =>search("#displayBooks", true));
+    // document.querySelector("#addBookForm")?.addEventListener("submit", addBook);
+    
+    
     session();
     getAccountData();
 });

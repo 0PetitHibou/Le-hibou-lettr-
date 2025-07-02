@@ -33,6 +33,10 @@ input, main textarea{
     border: solid transparent 2px;
 }
 
+.burger {
+    display: none;
+}
+
 header
 {
     display: flex;
@@ -328,12 +332,45 @@ footer div
     background-color: #ac5b45;
 }
 
+/* book list */
+
+
+
+.addBtn {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: #ac5b45;
+    color: white;
+    width: 10%;
+    height: 10%;
+    border: none;
+    padding: 10px 20px;
+    border-radius: 5px;
+}
+
 @media screen and (max-width:1400px)
 {
     .navigation
     {
         display: none;
     }
+    .burger
+    {
+        display: none;
+        position: absolute;
+        right: -20px;
+        top: 0;
+        height: 100vh;
+        background-color: #EBE2D3;
+    }
+    #navLink
+    {
+        display: flex;
+        align-content: space-between;
+        justify-content: space-between;
+    }
+
     nav img
     {
         display: block;

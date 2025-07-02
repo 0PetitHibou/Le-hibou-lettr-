@@ -31,7 +31,6 @@ export async function logIn(e) {
 }
 
 export function logOut() {
-    // signOut = document.querySelector(".logOut");
     if (localStorage.getItem("token")) {
         localStorage.removeItem("token");
         window.location.href = "login_signup.html";

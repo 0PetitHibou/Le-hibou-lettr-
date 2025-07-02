@@ -18,26 +18,36 @@
         <nav>
             <ul class="navigation">
                 <li><a href="index.html">Accueil</a></li>
-                <li><a href="catalog.html">Catalogue</a></li>
+                <li><a href="displayBooks.html">Catalogue</a></li>
                 <li class="login"><a href="login_signup.html">Connexion/inscription</a></li>
                 <li class="account"><a href="account.html">Mon compte</a></li>
-                <li class="add"><a href="add.html">Ajouter</a></li>
+                <li class="add"><a href="catalog.html">Ajouter</a></li>
                 <li class="logOut"><a href="#">Se déconnecter</a></li>
             </ul>
             <img src="asset/image/menu.svg" alt="menuBurger" width="60px">
         </nav>
     </header>
 
+    <header class="burger">
+        <nav class="navbar">
+
+            <div class="burger" id="burger">
+            
+            <ul class="nav-links" id="navLinks">
+                <li><a href="#">Accueil</a></li>
+                <li><a href="#">Catalogue</a></li>
+                <li><a href="#">Connexion/Inscription</a></li>
+                <li><a href="#">Mon compte</a></li>
+                <li><a href="#">Ajouter</a></li>
+                <li><a href="#">Se déconnecter</a></li>
+
+            </ul>
+        </nav>
+    </header>
+
     <main>
         <div class="picLibrary">
             <input type="text" id="searchInputCatalog" placeholder=" Rechercher un livre..." onkeyup="search()" />
-        </div>
-        <div class="newReleases">
-            <div>LIVRE</div>
-            <div>LIVRE</div>
-            <div>LIVRE</div>
-            <div>LIVRE</div>
-            <div>LIVRE</div>
         </div>
 
 

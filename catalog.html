@@ -10,15 +10,16 @@
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
+    <script src="asset/script/script.js" type="module"></script>
     <header>
         <div style="font-size: 40px;">Le hibou Lettré</div>
         <nav>
             <ul class="navigation">
                 <li><a href="index.html">Accueil</a></li>
-                <li><a href="catalog.html">Catalogue</a></li>
+                <li><a href="displayBooks.html">Catalogue</a></li>
                 <li class="login"><a href="login_signup.html">Connexion/inscription</a></li>
                 <li class="account"><a href="account.html">Mon compte</a></li>
-                <li class="add"><a href="add.html">Ajouter</a></li>
+                <li class="add"><a href="catalog.html">Ajouter</a></li>
                 <li class="logOut"><a href="#">Se déconnecter</a></li>
             </ul>
             <img src="asset/image/menu.svg" alt="menuBurger" width="60px">
@@ -26,8 +27,9 @@
     </header>
 
 <main>
-    <div><input type="text" id="searchInputCatalog" placeholder=" Rechercher un livre..." onkeyup="search()" /></div>
-    <div class="catalog"></div>
+    <div><input type="text" id="searchInputCatalog" placeholder=" Rechercher un livre..."   /></div>
+    <!-- onkeyup="search('searchInputCatalog')" -->
+    <div id="catalog"></div>
     
 </main>
 
@@ -56,6 +58,5 @@
 
 </footer>
 
-<script src="asset/script/script.js" type="module"></script>
 </body>
 </html>
