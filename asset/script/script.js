@@ -41,14 +41,12 @@ document.querySelector("#signupForm").addEventListener("submit", async function(
 
     const fName = document.querySelector("#firstName").value.trim()
     const lName = document.querySelector("#lastName").value.trim()
-    const bDate = document.querySelector("#birthDate").value.trim()
     const mail = document.querySelector("#signUpEmail").value.trim()
     const password = document.querySelector("#signUpPassword").value.trim()
 
     const body = JSON.stringify({
                 first_name:fName,
                 last_name:lName,
-                birth_date:bDate,
                 mail:mail,
                 password:password
             })
