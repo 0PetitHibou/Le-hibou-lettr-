@@ -13,11 +13,11 @@ function sendForm(e)
     e.preventDefault();
 
     const name = document.querySelector("#name").value.trim();
-    const email = document.querySelector("#email").value.trim();
+    const mail = document.querySelector("#mail").value.trim();
     const message = document.querySelector("#message").value.trim();
     const sent = document.querySelector("#messageSent");
 
-    if (!name || !email || !message)
+    if (!name || !mail || !message)
     {
         sent.textContent = "Veuillez remplir tous les champs obligatoires.";
         sent.style.display = "block";
@@ -36,19 +36,19 @@ function sendForm(e)
 }
 
 
-document.querySelector("#signupForm").addEventListener("submit", async function() 
+document.querySelector("#signupForm").addEventListener("submit", async function(e) 
 {
-
-    const fName = document.querySelector("#firstName").value.trim()
-    const lName = document.querySelector("#lastName").value.trim()
+    e.preventDefault();
+    const firstName = document.querySelector("#firstName").value.trim()
+    const lastName = document.querySelector("#lastName").value.trim()
     const mail = document.querySelector("#signUpEmail").value.trim()
     const password = document.querySelector("#signUpPassword").value.trim()
 
     const body = JSON.stringify({
-                first_name:fName,
-                last_name:lName,
-                mail:mail,
-                password:password
+                firstName,
+                lastName,
+                mail,
+                password
             })
             console.log(body);
 
@@ -74,7 +74,8 @@ document.querySelector("#signupForm").addEventListener("submit", async function(
     window.location.href = "/index.html";
     } catch (error) {
         console.log(error);
-    }}
+    }
+}
 )
 
 
