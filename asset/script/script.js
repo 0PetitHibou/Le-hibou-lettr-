@@ -35,84 +35,125 @@ function sendForm(e)
     document.querySelector("#contactForm").reset();
 }
 
+document.addEventListener("DOMContentLoaded", () => {
 
-document.querySelector("#signupForm").addEventListener("submit", async function(e) 
-{
-    e.preventDefault();
-    const firstName = document.querySelector("#firstName").value.trim()
-    const lastName = document.querySelector("#lastName").value.trim()
-    const mail = document.querySelector("#signUpEmail").value.trim()
-    const password = document.querySelector("#signUpPassword").value.trim()
+    const signUpForm = document.querySelector("#signupForm")
+    if(!signUpForm) return
 
-    const body = JSON.stringify({
-                firstName,
-                lastName,
-                mail,
-                password
-            })
-
-    try {
-        const response = await fetch("http://localhost:3000/users", {
-            method:"POST",
-            headers: {
-                "Content-Type" : "application/json"
-            },
-            body: body
-            
-        });
-
-        if (response.ok) {
-            const data = await response.json();
-            console.log("inscription réussie",data);
-            alert("Inscription réussie !");
-        } else {
-            const error = await response.json();
-            console.log("inscription echouée",error);
-            alert("Erreur lors de l'inscription");
-        }
-    window.location.href = "/index.html";
-    } catch (error) {
-        console.log(error);
-    }
-}
-)
-
-document.querySelector("#loginForm").addEventListener("submit", async function(e)
-{
-    e.preventDefault();
-    const mail = document.querySelector("#loginEmail").value.trim()
-    const password = document.querySelector("#loginPassword").value.trim()
+    signUpForm.addEventListener("submit", async function(e) 
+    {
+        e.preventDefault();
+        const firstName = document.querySelector("#firstName").value.trim()
+        const lastName = document.querySelector("#lastName").value.trim()
+        const mail = document.querySelector("#signUpEmail").value.trim()
+        const password = document.querySelector("#signUpPassword").value.trim()
 
         const body = JSON.stringify({
-                mail,
-                password
-            })
+                    firstName,
+                    lastName,
+                    mail,
+                    password
+                })
 
-    try {
-        const response = await fetch("http://localhost:3000/login", {
-            method:"POST",
-            headers: {
-                "Content-Type" : "application/json"
-            },
-            body: body
-        });
+        try {
+            const response = await fetch("http://localhost:3000/users", {
+                method:"POST",
+                headers: {
+                    "Content-Type" : "application/json"
+                },
+                body: body
+                
+            });
 
-        const data = await response.json()
-
-        if (!response.ok) {
-            alert(data.error || "Utilisateur inconnu")
-            return;
+            if (response.ok) {
+                const data = await response.json();
+                console.log("inscription réussie",data);
+                alert("Inscription réussie !");
+            } else {
+                const error = await response.json();
+                console.log("inscription echouée",error);
+                alert("Erreur lors de l'inscription");
+            }
+        window.location.href = "/index.html";
+        } catch (error) {
+            console.log(error);
         }
+    })
+})
 
-        localStorage.setItem("token", data.token);
-        localStorage.setItem("user", JSON.stringify(data.user));
+document.addEventListener("DOMContentLoaded", () => {
 
-        console.log(data.user, "connecté")
+    const loginForm = document.querySelector("#loginForm")
+    if (!loginForm) return
 
-        window.location.href = "index.html";
-    } catch (error) {
-        console.log(error);
+    loginForm.addEventListener("submit", async function(e)
+    {
+        e.preventDefault();
+        const mail = document.querySelector("#loginEmail").value.trim()
+        const password = document.querySelector("#loginPassword").value.trim()
+
+            const body = JSON.stringify({
+                    mail,
+                    password
+                })
+
+        try {
+            const response = await fetch("http://localhost:3000/login", {
+                method:"POST",
+                headers: {
+                    "Content-Type" : "application/json"
+                },
+                body: body
+            });
+
+            const data = await response.json()
+
+            if (!response.ok) {
+                alert(data.error || "Utilisateur inconnu")
+                return;
+            }
+
+            localStorage.setItem("token", data.token);
+            localStorage.setItem("user", JSON.stringify(data.user));
+
+            console.log(data.user, "connecté")
+
+            window.location.href = "index.html";
+        } catch (error) {
+            console.log(error);
+        }
+    })
+})
+
+document.addEventListener("DOMContentLoaded", () => {
+    const token = localStorage.getItem("token");
+    const user = JSON.parse(localStorage.getItem("user"));
+
+    const loginButton = document.querySelector("#loginButton")
+
+    if (!loginButton) return
+    if (token && user) {
+        loginButton.style.display = "none";
+    } else {
+        loginButton.style.display = "block"
     }
+})
+
+document.addEventListener("DOMContentLoaded", () => {
+    const logoutButton = document.querySelector("#logoutButton")
+    
+    if (!logoutButton) return
+
+    logoutButton.addEventListener("click", (e) => {
+        e.preventDefault()
+
+        localStorage.removeItem("token")
+        localStorage.removeItem("user")
+
+        console.log("Déconnecté")
+
+        window.location.href = "index.html"
+    })
 })
 
 
