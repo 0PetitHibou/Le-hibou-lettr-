@@ -6,5 +6,7 @@ document.addEventListener("DOMContentLoaded" , async () =>
     const response = await fetch ("header.html")
     const html = await response.text();
     header.innerHTML = html;
+
+    initUi()
 }
 )

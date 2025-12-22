@@ -1,24 +1,20 @@
-document.addEventListener("DOMContentLoaded", () => {
+function initUi() {
 
     const token = localStorage.getItem("token");
     const user = JSON.parse(localStorage.getItem("user"));
 
     const loginButton = document.querySelector("#loginButton")
-    console.log("login button", loginButton)
+    const logoutButton = document.querySelector("#logoutButton")
 
-    if (!loginButton) return
     if (token && user) {
-        loginButton.style.display = "none";
+        loginButton.style.display = "none"
+        logoutButton.style.display = "block"
+        console.log("oui")
     } else {
         loginButton.style.display = "block"
+        logoutButton.style.display = "none"
+        console.log("non")
     }
-})
-
-
-document.addEventListener("DOMContentLoaded", () => {
-    const logoutButton = document.querySelector("#logoutButton")
-    
-    if (!logoutButton) return
 
     logoutButton.addEventListener("click", (e) => {
         e.preventDefault()
@@ -28,7 +24,6 @@ document.addEventListener("DOMContentLoaded", () => {
 
         console.log("Déconnecté")
 
-        window.location.replace = "index.html"
+        window.location.href = "index.html"
     })
-
-})
+}
