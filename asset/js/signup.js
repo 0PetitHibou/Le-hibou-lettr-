@@ -1,0 +1,45 @@
+document.addEventListener("DOMContentLoaded", () => {
+
+    const signUpForm = document.querySelector("#signupForm")
+    if(!signUpForm) return
+
+    signUpForm.addEventListener("submit", async function(e) 
+    {
+        e.preventDefault();
+        const firstName = document.querySelector("#firstName").value.trim()
+        const lastName = document.querySelector("#lastName").value.trim()
+        const mail = document.querySelector("#signUpEmail").value.trim()
+        const password = document.querySelector("#signUpPassword").value.trim()
+
+        const body = JSON.stringify({
+                    firstName,
+                    lastName,
+                    mail,
+                    password
+                })
+
+        try {
+            const response = await fetch("http://localhost:3000/users", {
+                method:"POST",
+                headers: {
+                    "Content-Type" : "application/json"
+                },
+                body: body
+                
+            });
+
+            if (response.ok) {
+                const data = await response.json();
+                console.log("inscription réussie",data);
+                alert("Inscription réussie !");
+            } else {
+                const error = await response.json();
+                console.log("inscription echouée",error);
+                alert("Erreur lors de l'inscription");
+            }
+        window.location.href = "/index.html";
+        } catch (error) {
+            console.log(error);
+        }
+    })
+})
