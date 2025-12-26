@@ -24,7 +24,7 @@ function displayBook(books)
             const image = document.createElement("img"); 
             image.src = `https://covers.openlibrary.org/b/id/${cover_i}-L.jpg`;
     
-            image.src = cover_i ? image.src = `https://covers.openlibrary.org/b/id/${cover_i}-L.jpg` : "/asset/image/placeholder_book.jpg";
+            image.src = cover_i ? image.src = `https://covers.openlibrary.org/b/id/${cover_i}-L.jpg` : "asset/image/placeholder_book.jpg";
         
             //Informations
             const info = document.createElement("div");

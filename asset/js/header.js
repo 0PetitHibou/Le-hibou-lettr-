@@ -8,5 +8,4 @@ document.addEventListener("DOMContentLoaded" , async () =>
     header.innerHTML = html;
 
     initUi()
-}
-)
+})
