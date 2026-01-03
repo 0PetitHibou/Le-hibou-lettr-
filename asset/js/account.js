@@ -9,7 +9,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
 
     userName.textContent = `Utilisateur : ${user.first_name} ${user.last_name}`
-    userEmail.textContent = `Email : ${user.mail}`
+    userEmail.textContent = `${user.mail}`
 
 })
 

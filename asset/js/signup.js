@@ -30,14 +30,17 @@ document.addEventListener("DOMContentLoaded", () => {
 
             if (response.ok) {
                 const data = await response.json();
-                console.log("inscription réussie",data);
-                alert("Inscription réussie !");
+
+                localStorage.setItem("token", data.token);
+                localStorage.setItem("user", JSON.stringify(data.user));
+
+                alert(data.message); // "Inscription effectuée"
+                window.location.href = "index.html";
             } else {
                 const error = await response.json();
-                console.log("inscription echouée",error);
-                alert("Erreur lors de l'inscription");
+                alert("Erreur : " + error.error);
             }
-        window.location.href = "/index.html";
+
         } catch (error) {
             console.log(error);
         }
